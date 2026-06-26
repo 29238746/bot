@@ -1,15 +1,37 @@
 use azalea::prelude::*;
-use azalea::prelude::AppExit;   // ✅ FIXED: AppExit is inside prelude
+use azalea::prelude::AppExit;
+use std::io::Write;
 
-const PASSWORD: &str = "Botczosnikowy345";   // 👈 CHANGE THIS
+const PASSWORD: &str = "Botczosnikowy345";
 
 #[tokio::main]
 async fn main() -> AppExit {
-    let account = Account::offline("zenix_czosnikowy");  // 👈 CHANGE THIS
-    ClientBuilder::new()
+    // Force immediate output
+    let _ = std::io::stderr().flush();
+    eprintln!("[1] Bot starting...");
+    let _ = std::io::stderr().flush();
+
+    let account = Account::offline("zenix_czosnikowy");
+    eprintln!("[2] Account created");
+    let _ = std::io::stderr().flush();
+
+    eprintln!("[3] Connecting to renciarze.aternos.me:16628...");
+    let _ = std::io::stderr().flush();
+
+    let result = ClientBuilder::new()
         .set_handler(handle)
-        .start(account, "renciarze.aternos.me")          // 👈 CHANGE THIS
-        .await
+        .start(account, "renciarze.aternos.me:16628")
+        .await;
+
+    eprintln!("[4] Connection finished. Result: {:?}", result);
+    let _ = std::io::stderr().flush();
+
+    if let Err(e) = &result {
+        eprintln!("[ERROR] Connection failed: {:?}", e);
+        let _ = std::io::stderr().flush();
+    }
+
+    result
 }
 
 #[derive(Default, Clone, Component)]
