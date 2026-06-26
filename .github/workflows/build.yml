@@ -10,13 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # ✅ NEW: Install the absolute latest nightly
     - name: Install Rust nightly
       run: |
         rustup toolchain install nightly --profile minimal
         rustup default nightly
 
-    # ✅ NEW: Ensure we have the latest components
     - name: Show Rust version
       run: rustc --version
 
