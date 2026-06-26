@@ -9,16 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+
+    # ✅ NEW: Install the absolute latest nightly
     - name: Install Rust nightly
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: nightly
-        override: true
-        target: x86_64-unknown-linux-gnu
+      run: |
+        rustup toolchain install nightly --profile minimal
+        rustup default nightly
+
+    # ✅ NEW: Ensure we have the latest components
+    - name: Show Rust version
+      run: rustc --version
+
     - name: Build
       run: cargo build --release
+
     - name: Upload Binary
       uses: actions/upload-artifact@v4
       with:
-        name: bot
-        path: target/release/bot
+        name: my_bot
+        path: target/release/my_bot
