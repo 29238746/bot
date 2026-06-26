@@ -26,11 +26,6 @@ async fn main() -> AppExit {
     eprintln!("[4] Connection finished. Result: {:?}", result);
     let _ = std::io::stderr().flush();
 
-    if let Err(e) = &result {
-        eprintln!("[ERROR] Connection failed: {:?}", e);
-        let _ = std::io::stderr().flush();
-    }
-
     result
 }
 
