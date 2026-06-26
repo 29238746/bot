@@ -1,14 +1,14 @@
 use azalea::prelude::*;
-use azalea::AppExit;
+use azalea::prelude::AppExit;   // ✅ FIXED: AppExit is inside prelude
 
-const PASSWORD: &str = "Bot@12345";   // 👈 CHANGE THIS
+const PASSWORD: &str = "Botczosnikowy345";   // 👈 CHANGE THIS
 
 #[tokio::main]
 async fn main() -> AppExit {
     let account = Account::offline("zenix_czosnikowy");  // 👈 CHANGE THIS
     ClientBuilder::new()
         .set_handler(handle)
-        .start(account, "renciarze.aternos.me")                // 👈 CHANGE THIS
+        .start(account, "renciarze.aternos.me")          // 👈 CHANGE THIS
         .await
 }
 
