@@ -20,5 +20,5 @@ jobs:
     - name: Upload Binary
       uses: actions/upload-artifact@v4
       with:
-        name: my_bot
-        path: target/release/my_bot
+        name: bot
+        path: target/release/bot
