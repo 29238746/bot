@@ -1,0 +1,9 @@
+[package]
+name = "my_bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+azalea = { git = "https://github.com/azalea-rs/azalea" }
+tokio = { version = "1", features = ["full"] }
+anyhow = "1"
